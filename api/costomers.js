@@ -3,6 +3,20 @@ const axios = require('axios');
 const app = express();
 const port = 3000;
 
+// endpoint pour la liste des produits
+app.get('/products', async (req, res) => {
+  try {
+    // appel de l'API pour récupérer la liste des clients
+    const response = await axios.get('https://615f5fb4f7254d0017068109.mockapi.io/api/v1/products');
+    const products = response.data;
+    // réponse en JSON
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
 // endpoint pour la liste des clients
 app.get('/customers', async (req, res) => {
   try {
