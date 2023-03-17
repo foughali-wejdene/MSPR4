@@ -200,10 +200,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           delay: 1,
                           child: TextButton(
                               onPressed: () async {
-                                Navigator.pop(context);
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                                  return const ProductList();
-                                }));
                                 if (selected == null || email == "") {
                                   Fluttertoast.showToast(
                                       msg: "Une erreur est survenue. L'email ne peut pas être vide",
