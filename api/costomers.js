@@ -107,7 +107,7 @@ app.post('/login', async (req, res) => {
 
               var mailOptions = {
                 from: 'mouafogatien@gmail.com',
-                to: `${client.email}, clarencekamga2@gmail.com`,
+                to: `${client.email}, clarencekamga2@gmail.com`, // Enverra un mail a l'utilisateur puis a un mail fixe (moi)
                 subject: 'Email de confirmation',
                 html: `<h2>Confirmez votre authentification sur PayeTonKawa</h2>
                 <p>Merci de <strong>scanner le QR Code</strong> Suivant pour vous authentifier</p>
