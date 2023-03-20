@@ -48,7 +48,7 @@ class TabBarPart extends StatelessWidget {
                               children: <Widget>[
                                 InkWell(
                                   child: ProfileListItem(
-                                    icon: Icons.key,
+                                    icon: Icons.verified_user,
                                     text: "Nom : ${usr.name}",
                                   ),
                                   onTap: () {
@@ -58,8 +58,8 @@ class TabBarPart extends StatelessWidget {
                                 _buildDivider(),
                                 InkWell(
                                   child: ProfileListItem(
-                                    icon: Icons.calendar_month,
-                                    text: 'Identifiant : ${usr.username}',
+                                    icon: Icons.email,
+                                    text: 'Email : ${usr.email}',
                                     hasNavigated: false,
                                   ),
                                   onTap: () {

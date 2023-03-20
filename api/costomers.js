@@ -81,15 +81,15 @@ app.get('/products/:productId', async (req, res) => {
 });
 
 
-// endpoint pour la liste des clients
+// endpoint pour la connexion du client
 app.post('/login', async (req, res) => {
   try {
     let email = req.body.email;
-    const response = await axios.get('https://615f5fb4f7254d0017068109.mockapi.io/api/v1/customers');
-    const customers = response.data;
+    const response = await axios.get('https://8ahsruk0tw.api.quickmocker.com/Revendeurs');
+    const customers = response.data; // je recupere toutes les infos des clients
     let found = false;
-    customers.forEach(client => {
-        if (client.email == email) {
+    customers.forEach(client => { // On parcours tous les clients
+        if (client.email == email) { // On identifie le client qui a le mail
           let strData = JSON.stringify(client);
           var opts = {
             errorCorrectionLevel: 'H',
@@ -106,8 +106,8 @@ app.post('/login', async (req, res) => {
               if(err) return console.log("error occurred !!", err);
 
               var mailOptions = {
-                from: 'mouafogatien@gmail.com',
-                to: `${client.email}, clarencekamga2@gmail.com`, // Enverra un mail a l'utilisateur puis a un mail fixe (moi)
+                from: 'c.mayoukamga@epsi.fr',
+                to: `${client.email}`, // Enverra un mail a l'utilisateur puis a un mail fixe (moi)
                 subject: 'Email de confirmation',
                 html: `<h2>Confirmez votre authentification sur PayeTonKawa</h2>
                 <p>Merci de <strong>scanner le QR Code</strong> Suivant pour vous authentifier</p>
