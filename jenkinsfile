@@ -8,7 +8,7 @@ pipeline {
     stages{
         stage('checkout') { 
             steps {
-                git branch:'develop',url:'https://github.com/foughali-wejdene/MSPR4.git'
+                git branch:'develop',url:'https://github.com/foughali-wejdene/MSPR4/mobile.git'
                 }
 
 
