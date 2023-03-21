@@ -1,72 +1,43 @@
 pipeline {
-        
-        agent any
-        
-        triggers {
-            pollSCM 'H/5 * * * *' 
-        }
-        
-        stages{
-            stage("checkout"){
-                steps {
+    agent any
+
+
+    stages{
+            stage('checkout'){
+            steps {
                     git branch: 'main', url: 'https://github.com/foughali-wejdene/MSPR4.git'
-                }
             }
-        
-     
-        
-          
-            stage("PayTonkawa Clean"){
-                steps {
-                    dir ('PROJECT/'){
-                        bat './mvnw clean'
-                          
-                    }
-                }
+        }
+
+            stage('clean') {
+            steps {
+                    sh '''chmod u+x ./mvnw'''
+                    sh './mvnw clean'
             }
-          
-          
-              stage("PayTonkawa Compile"){
-                steps {
-                    dir ('PROJECT/'){
-                         bat './mvnw compile'
-                          
-                    }
-                }
+        }
+        stage('compile') {
+            steps {
+                 sh '''chmod u+x ./mvnw'''
+                    sh './mvnw compile'
             }
-          
-          
-            stage("PayTonkawa Test"){
-                steps {
-                    dir ('PROJECT/'){
-                          bat './mvnw test'
-                          
-                    }
-                }
+        }
+                stage('test') {
+            steps {
+                 sh '''chmod u+x ./mvnw'''
+                    sh './mvnw test'
             }
-          
-          
-           stage("PayTonkawa Package"){
-                steps {
-                    dir ('PROJECT/'){
-                         bat './mvnw package'
-                          
-                    }
-                }
+        }
+                stage('package') {
+            steps {
+                 sh '''chmod u+x ./mvnw'''
+                    sh './mvnw package'
             }
-          
-          
-           /*  stage("PayTonkawa Archive"){
-                steps {
-                    dir ('PROJECT/'){
-                        bat 'rename target\\erphrense-0.0.1-SNAPSHOT.jar erphrense-%BUILD_NUMBER%.jar'
-                        archiveArtifacts artifacts: 'target\\erphrense-*.jar', followSymlinks: false
-                          
-                    }
-                }
-            }*/
-          
-          
-        }  
-        
+        }
+                stage('archive') {
+            steps {
+                  sh 'mv target/erphrense-0.0.1-SNAPSHOT.jar erphrense-${BUILD_NUMBER}.jar'
+                  archiveArtifacts artifacts: 'erphrense-*.jar', followSymlinks: false
+            }
+        }
     }
+}
