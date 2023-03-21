@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        PATH="$PATH:/Users/wejdene/Documents/flutter/bin
-    }
+    
 
     stages{
         stage('checkout') { 
